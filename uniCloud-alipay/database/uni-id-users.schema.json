@@ -1,0 +1,91 @@
+// 文档教程: https://uniapp.dcloud.net.cn/uniCloud/schema
+{
+	"bsonType": "object",
+	"required": [],
+	"permission": {
+		"read": "auth.uid != null",
+		"create": "auth.uid != null",
+		"update": "auth.uid == doc._id || 'admin' in auth.role",
+		"delete": "auth.uid == doc._id || 'admin' in auth.role"
+	},
+	"properties": {
+		"_id": {
+			"description": "用户ID，系统自动生成"
+		},
+		"username": {
+			"bsonType": "string",
+			"description": "用户名",
+			"minLength": 3,
+			"maxLength": 20
+		},
+		"nickname": {
+			"bsonType": "string",
+			"description": "昵称",
+			"minLength": 1,
+			"maxLength": 50
+		},
+		"mobile": {
+			"bsonType": "string",
+			"description": "手机号",
+			"pattern": "^\\+?[0-9]{5,20}$"
+		},
+		"email": {
+			"bsonType": "string",
+			"description": "邮箱",
+			"pattern": "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$"
+		},
+		"avatar": {
+			"bsonType": "string",
+			"description": "头像URL"
+		},
+		"gender": {
+			"bsonType": "int",
+			"description": "性别: 0-未知, 1-男, 2-女",
+			"defaultValue": 0,
+			"enum": [0, 1, 2]
+		},
+		"status": {
+			"bsonType": "int",
+			"description": "用户状态: 0-正常, 1-禁用, 2-审核中",
+			"defaultValue": 0,
+			"enum": [0, 1, 2]
+		},
+		"address": {
+			"bsonType": "string",
+			"description": "所在地址"
+		},
+		"addcode": {
+			"bsonType": "string",
+			"description": "地区编码"
+		},
+		"wx": {
+			"bsonType": "string",
+			"description": "微信号"
+		},
+		"register_date": {
+			"bsonType": "timestamp",
+			"description": "注册时间",
+			"forceDefaultValue": {
+				"$env": "now"
+			}
+		},
+		"last_login_date": {
+			"bsonType": "timestamp",
+			"description": "最后登录时间"
+		},
+		"last_login_ip": {
+			"bsonType": "string",
+			"description": "最后登录IP"
+		},
+		"paper_count": {
+			"bsonType": "int",
+			"description": "投入纸条数量",
+			"defaultValue": 0
+		},
+		"balance": {
+			"bsonType": "double",
+			"description": "账户余额",
+			"defaultValue": 0
+		}
+	}
+}
